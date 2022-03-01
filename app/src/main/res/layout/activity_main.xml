@@ -42,6 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textMatrikel">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textinputmatnr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_matnr"
@@ -58,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/primes"
+        android:onClick="prime"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
