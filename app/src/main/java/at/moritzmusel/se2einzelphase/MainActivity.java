@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -56,10 +58,15 @@ public class MainActivity extends AppCompatActivity {
         String matnr = String.valueOf(inputfield_matnr.getEditText().getText());
         for (int i = 0; i < matnr.length(); i++) {
             if (isPrime(Integer.parseInt(matnr.charAt(i) + "")))
-                primes.append(matnr.charAt(i)).append(" ");
+                primes.append(matnr.charAt(i));
         }
-        TextView textprimes = (TextView) findViewById(R.id.textprimes);
-        textprimes.setText("Following primes found\n" + ((!primes.toString().equals("")) ? primes.toString() : "none"));
+        TextView textprime = (TextView)findViewById(R.id.textprimes);
+        textprime.setText("Following primes found");
+        TextView primeResponse = ((TextView)findViewById(R.id.primeNumbers));
+        primeResponse.setText(((!primes.toString().equals("")) ? primes.toString() : "none"));
+        primeResponse.setTextColor(getResources().getColor(R.color.purple_500));
+        addTextFadeoutAnimation(primeResponse);
+        addTextFadeoutAnimation(textprime, 4000);
     }
 
     private boolean isPrime(int n) {
@@ -96,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         TextView textprimes = (TextView) findViewById(R.id.responseServer);
                         textprimes.setText(string);
                         textprimes.setTextColor(getResources().getColor(R.color.purple_500));
+                        addTextFadeoutAnimation(textprimes);
                     }
                 }));
     }
@@ -110,5 +118,38 @@ public class MainActivity extends AppCompatActivity {
             String line = in.readLine();
             return Observable.just(line);
         });
+    }
+
+    private void addTextFadeoutAnimation(TextView text){
+        Animation out = new AlphaAnimation(1.0f, 0.0f);
+        out.setStartOffset(3000);
+        out.setDuration(1500);
+        out.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {}
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                text.setText("");
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+        text.setAnimation(out);
+    }
+    private void addTextFadeoutAnimation(TextView text, int animationStartOffset){
+        Animation out = new AlphaAnimation(1.0f, 0.0f);
+        out.setStartOffset(animationStartOffset);
+        out.setDuration(1500);
+        out.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {}
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                text.setText("");
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+        text.setAnimation(out);
     }
 }
