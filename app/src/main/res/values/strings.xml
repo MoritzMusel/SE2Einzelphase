@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SE2Einzelphase</string>
+    <string name="antwort_vom_server">Antwort vom Server</string>
+    <string name="abschicken">Abschicken</string>
+    <string name="matrikelnummer">Gib deine Matrikelnummer ein</string>
+    <string name="se2einzelphase">RxAndroid Test</string>
+    <string name="hint_matnr">11122333</string>
+    <string name="primes">Primes</string>
+</resources>
